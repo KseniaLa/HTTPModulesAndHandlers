@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskWebApp", "TaskWebApp\TaskWebApp.csproj", "{D14D3654-AA56-40B0-BA90-89CA5146E808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RequestPipeline", "RequestPipeline\RequestPipeline.csproj", "{366A07E2-C6D5-4A88-A74E-8FCD3C74BAE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D14D3654-AA56-40B0-BA90-89CA5146E808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D14D3654-AA56-40B0-BA90-89CA5146E808}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D14D3654-AA56-40B0-BA90-89CA5146E808}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D14D3654-AA56-40B0-BA90-89CA5146E808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{366A07E2-C6D5-4A88-A74E-8FCD3C74BAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{366A07E2-C6D5-4A88-A74E-8FCD3C74BAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{366A07E2-C6D5-4A88-A74E-8FCD3C74BAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{366A07E2-C6D5-4A88-A74E-8FCD3C74BAE2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {918FB147-F07A-493C-BDBF-AED8316DE780}
+	EndGlobalSection
+EndGlobal
