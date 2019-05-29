@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Threading;
 using System.Web;
 
 namespace RequestPipeline.HttpModules
@@ -16,19 +18,28 @@ namespace RequestPipeline.HttpModules
                context.EndRequest += OnEnd;
           }
 
-          public void OnBegin(Object source, EventArgs e)
+          public void OnBegin(object source, EventArgs e)
           {
                var context = ((HttpApplication)source).Context;
 
-               context.Response.AddHeader("Start Time", DateTime.Now.ToString("O"));
+               var timer =new Stopwatch();
+               context.Items["Timer"] = timer;
+
                context.Response.AddHeader("IP address", context.Request.UserHostAddress ?? "undefined");
+
+               timer.Start();
           }
 
-          public void OnEnd(Object source, EventArgs e)
+          public void OnEnd(object source, EventArgs e)
           {
                var context = ((HttpApplication)source).Context;
 
-               context.Response.AddHeader("End Time", DateTime.Now.ToString("O"));
+               if (context.Items["Timer"] is Stopwatch timer)
+               {
+                    timer.Stop();
+
+                    context.Response.AddHeader("Total Time", $"{timer.Elapsed.TotalMilliseconds} ms");
+               }
           }
 
      }
