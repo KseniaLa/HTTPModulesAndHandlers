@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HttpHandlers\CacheHandler.cs" />
     <Compile Include="HttpHandlers\CropImageHandler.cs" />
     <Compile Include="HttpModules\RequestHeadersModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -42,6 +42,7 @@ namespace RequestPipeline.HttpHandlers
                img.Save(temp, ImageFormat.Jpeg);
                var buffer = temp.GetBuffer();
                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
+               context.Response.ContentType = "image/jpeg";
                context.Response.End();
           }
 
