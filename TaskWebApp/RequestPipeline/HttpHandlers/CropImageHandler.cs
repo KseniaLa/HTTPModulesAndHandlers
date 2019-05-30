@@ -19,8 +19,8 @@ namespace RequestPipeline.HttpHandlers
 
                if (!File.Exists(imagePath))
                {
-                    context.Response.StatusCode = 400;
-                    context.Response.Write("File not found");
+                    context.Response.StatusCode = 404;
+                    context.Response.StatusDescription = "File not found";
                     context.Response.End();
                     return;
                }
@@ -36,23 +36,27 @@ namespace RequestPipeline.HttpHandlers
                if (!string.IsNullOrEmpty(sizeParameter))
                {
                     var size = int.Parse(sizeParameter);
-                    img = CropImage(img, new Rectangle(0, 0, size, size));
+                    img = CropImage(img, size, size);
                }
 
                img.Save(temp, ImageFormat.Jpeg);
                var buffer = temp.GetBuffer();
                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
                context.Response.ContentType = "image/jpeg";
+
                context.Response.End();
           }
 
-          public Bitmap CropImage(Bitmap source, Rectangle section)
+          public Bitmap CropImage(Bitmap source, int width, int height)
           {
-               var bmp = new Bitmap(section.Width, section.Height);
+               var cropWidth = source.Width >= width ? width : source.Width;
+               var cropHeight = source.Height >= height ? height : source.Height;
+
+               var bmp = new Bitmap(cropWidth, cropHeight);
 
                var g = Graphics.FromImage(bmp);
 
-               g.DrawImage(source, 0, 0, section, GraphicsUnit.Pixel);
+               g.DrawImage(source, 0, 0, new Rectangle(0, 0, cropWidth, cropHeight), GraphicsUnit.Pixel);
 
                return bmp;
           }
