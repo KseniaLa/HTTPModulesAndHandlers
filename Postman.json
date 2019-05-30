@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "bf222d74-db2a-4c78-b5ae-9b9a1bcfa84b",
+		"name": "ModulesAndHandlers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:50889/api/values",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50889/api/values",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50889",
+					"path": [
+						"api",
+						"values"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:50889/images/flower.jpg?size=400",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50889/images/flower.jpg?size=400",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50889",
+					"path": [
+						"images",
+						"flower.jpg"
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "400"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:50889/cacheImages/diagram.jpg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50889/cacheImages/diagram.jpg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50889",
+					"path": [
+						"cacheImages",
+						"diagram.jpg"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
