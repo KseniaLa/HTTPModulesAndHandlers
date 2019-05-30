@@ -21,7 +21,7 @@ http://localhost:50889/api/values/5
 
 http://localhost:50889/cacheImages/diagram.jpg (any image from CacheImages folder can be used)
 
-![]img/Mozilla%20Firefox.jpg
+![](img/Mozilla%20Firefox.jpg)
 
 <br/>
 
