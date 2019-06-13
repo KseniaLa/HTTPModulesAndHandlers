@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Web;
+using RequestPipeline.Extensions;
 
 namespace RequestPipeline.HttpHandlers
 {
@@ -27,22 +28,22 @@ namespace RequestPipeline.HttpHandlers
 
                var img = new Bitmap(imagePath);
 
-               var requestUrl = new Uri(HttpContext.Current.Request.Url.Scheme + "://" + HttpContext.Current.Request.Url.Authority + HttpContext.Current.Request.RawUrl);
-
-               var sizeParameter = HttpUtility.ParseQueryString(requestUrl.Query).Get("size");
+               var sizeParameter = HttpUtility.ParseQueryString(context.Request.Url.Query).Get("size");
 
                var temp = new MemoryStream();
 
                if (!string.IsNullOrEmpty(sizeParameter))
                {
-                    var size = int.Parse(sizeParameter);
-                    img = CropImage(img, size, size);
+                    if (int.TryParse(sizeParameter, out var size) && size > 0)
+                    {
+                         img = CropImage(img, size, size);
+                    }
                }
 
-               img.Save(temp, ImageFormat.Jpeg);
+               img.Save(temp, context.Request.FilePath.GetImageFormatByName());
                var buffer = temp.GetBuffer();
                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
-               context.Response.ContentType = "image/jpeg";
+               context.Response.ContentType = context.Request.FilePath.GetContentTypeByName();
 
                context.Response.End();
           }
@@ -60,5 +61,7 @@ namespace RequestPipeline.HttpHandlers
 
                return bmp;
           }
+
+          
      }
 }

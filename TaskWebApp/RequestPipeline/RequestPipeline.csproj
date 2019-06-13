@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\StringImageFormatExtension.cs" />
     <Compile Include="HttpHandlers\CacheHandler.cs" />
     <Compile Include="HttpHandlers\CropImageHandler.cs" />
     <Compile Include="HttpModules\RequestHeadersModule.cs" />

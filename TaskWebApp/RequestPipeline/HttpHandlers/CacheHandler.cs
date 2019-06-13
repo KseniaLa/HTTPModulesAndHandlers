@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Web;
+using RequestPipeline.Extensions;
 
 namespace RequestPipeline.HttpHandlers
 {
@@ -46,7 +47,7 @@ namespace RequestPipeline.HttpHandlers
                context.Response.OutputStream.Write(buffer, 0, buffer.Length);
                context.Response.Cache.SetCacheability(HttpCacheability.Public);
                context.Response.Cache.SetLastModified(imgInfo.LastWriteTime);
-               context.Response.ContentType = "image/jpeg";
+               context.Response.ContentType = context.Request.FilePath.GetContentTypeByName();
 
                context.Response.End();
           }

@@ -22,23 +22,20 @@ namespace RequestPipeline.HttpModules
           {
                var context = ((HttpApplication)source).Context;
 
-               var timer =new Stopwatch();
-               context.Items["Timer"] = timer;
+               context.Items["Timer"] = new TimeSpan(DateTime.UtcNow.Ticks).TotalMilliseconds;
 
                context.Response.AddHeader("IP address", context.Request.UserHostAddress ?? "undefined");
-
-               timer.Start();
           }
 
           public void OnEnd(object source, EventArgs e)
           {
                var context = ((HttpApplication)source).Context;
 
-               if (context.Items["Timer"] is Stopwatch timer)
+               if (context.Items["Timer"] is double startTime)
                {
-                    timer.Stop();
+                    var endTime = new TimeSpan(DateTime.UtcNow.Ticks).TotalMilliseconds;
 
-                    context.Response.AddHeader("Total Time", $"{timer.Elapsed.TotalMilliseconds} ms");
+                    context.Response.AddHeader("Total Time", $"{Math.Abs(endTime - startTime)} ms");
                }
           }
 
